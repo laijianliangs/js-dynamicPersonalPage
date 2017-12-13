@@ -20,7 +20,7 @@
 
 <body>
 <div class="loading active" id="loading"></div>
-<div class="topNavBar" style="z-index: 1">
+<div class="topNavBar" id="topNavBar">
     <div class="topNavBar-inner clearfix">
         <a class="logo" href="#" alt="logo" style="float: left;">
             <span class="rs">RS</span>
@@ -198,11 +198,21 @@
 
 </section>
 
-<!--加载loading-->
+
 <script>
-    setTimeout(function(){
+//  loading 动画
+    setTimeout(function () {
         loading.classList.remove("active")
-    },3000)
+    }, 3000)
+
+//  会变的 topNavBar
+    window.onscroll = function(){
+        if(window.scrollY > 0){
+            topNavBar.classList.add("sticky")
+        }else{
+            topNavBar.classList.remove("sticky")
+        }
+    }
 </script>
 
 </body>
