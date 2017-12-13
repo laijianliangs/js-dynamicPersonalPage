@@ -31,11 +31,21 @@
                 <li>
                     <a href="#">关于</a>
                 </li>
-                <li>
+                <li class="itemsMonitor">
                     <a href="#">技能</a>
+                    <ul class="skills">
+                        <li><a href="#">技能1</a></li>
+                        <li><a href="#">技能2</a></li>
+                        <li><a href="#">技能3</a></li>
+                    </ul>
                 </li>
-                <li>
+                <li class="itemsMonitor">
                     <a href="#">作品</a>
+                    <ul class="projects">
+                        <li><a href="#">作品1</a></li>
+                        <li><a href="#">作品2</a></li>
+                        <li><a href="#">作品3</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#">博客</a>
@@ -200,17 +210,30 @@
 
 
 <script>
-//  loading 动画
+    //  loading 动画
     setTimeout(function () {
         loading.classList.remove("active")
-    }, 3000)
+    }, 0)
 
-//  会变的 topNavBar
-    window.onscroll = function(){
-        if(window.scrollY > 0){
+    //  会变的 topNavBar
+    window.onscroll = function () {
+        if (window.scrollY > 0) {
             topNavBar.classList.add("sticky")
-        }else{
+        } else {
             topNavBar.classList.remove("sticky")
+        }
+    }
+
+    //  会动的二级菜单
+    var aTags = document.getElementsByClassName('itemsMonitor');
+    for(let i=0;i<aTags.length;i++){
+        aTags[i].onmouseenter = function (x) {
+            var oUl = x.currentTarget;
+            oUl.classList.add("active")
+        }
+        aTags[i].onmouseleave = function (x) {
+            var oUl = x.currentTarget;
+            oUl.classList.remove("active")
         }
     }
 </script>

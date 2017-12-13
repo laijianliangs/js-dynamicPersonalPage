@@ -63,7 +63,8 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
 }
-.topNavBar.sticky{
+
+.topNavBar.sticky {
     background-color: #ffffff;
     padding: 10px;
     box-shadow: 0px 2px 2px #888;
@@ -75,6 +76,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .topNavBar nav {
     padding-top: 7px;
+    position: relative;
 }
 
 .topNavBar nav > ul {
@@ -98,10 +100,63 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 5px;
     padding-bottom: 5px;
     display: block;
+    position: relative;
 }
 
-.topNavBar nav > ul > li > a:hover {
-    border-bottom: 3px solid #e06567;
+.topNavBar nav .skills {
+    display: none;
+    position: absolute;
+    padding: 10px;
+}
+
+.topNavBar nav li.active .skills {
+    display: block;
+    background-color: white;
+    white-space: nowrap;
+    animation: RightToLeft 0.5s;
+}
+
+.topNavBar nav .projects {
+    display: none;
+    position: absolute;
+    padding: 10px;
+}
+
+.topNavBar nav li.active .projects {
+    display: block;
+    background-color: white;
+    white-space: nowrap;
+    animation: RightToLeft 0.5s;
+}
+
+@keyframes RightToLeft {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 9%;
+    }
+}
+
+.topNavBar nav > ul > li > a:hover::after {
+    /*border-bottom: 3px solid #e06567;*/
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: red;
+    animation: leftToRight 0.5s;
+}
+
+@keyframes leftToRight {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
 }
 
 .topNavBar .logo {
