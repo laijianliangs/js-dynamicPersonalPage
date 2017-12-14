@@ -35,11 +35,6 @@ h1, h2, h3, h4, h5, h6 {
     clear: both;
 }
 
-.topNavBar {
-    z-index: 1;
-    transition: all .3s linear;
-}
-
 .top-nav-noscroll {
     padding: 30px 100px;
     position: fixed;
@@ -57,6 +52,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .topNavBar {
+    z-index: 1;
+    transition: all .3s linear;
     padding: 20px 0 20px 0;
     position: fixed;
     top: 0;
