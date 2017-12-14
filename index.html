@@ -67,7 +67,7 @@
     <div class="mask"></div>
 </div>
 <main>
-    <div class="userCard" id="jumpAboutMe">
+    <div class="userCard" id="jumpAboutMe" data-x>
         <div class="pictureAndText clearfix">
             <div class="picture">
                 <img src="./img/avatar.jpg" width=299 height=347 alt="头像">
@@ -122,7 +122,7 @@
     </p>
 
 </main>
-<section class="skills" id="jumpSkills">
+<section class="skills" id="jumpSkills" data-x>
     <h2>技能</h2>
     <ol class="clearfix">
         <li>
@@ -181,7 +181,7 @@
         </li>
     </ol>
 </section>
-<section class="portfolio" id="jumpProjects">
+<section class="portfolio" id="jumpProjects" data-x>
     <h2>作品集</h2>
     <nav>
         <ol class="clearfix">
@@ -222,6 +222,23 @@
         } else {
             topNavBar.classList.remove("sticky")
         }
+
+    //  高亮当前元素
+        let dataTags = document.querySelectorAll('[data-x]')
+        let minIndex = 0
+        for(let i =1;i<dataTags.length;i++){
+            if(Math.abs(dataTags[i].offsetTop-window.scrollY) < Math.abs(dataTags[minIndex].offsetTop-window.scrollY)){
+                minIndex = i;
+            }
+        }
+        let id = dataTags[minIndex].id
+        let a = document.querySelector('a[href="#'+id+'"]')
+        let li = a.parentNode
+        let ulChildren = li.parentNode.children
+        for(let i =0;i<ulChildren.length;i++){
+            ulChildren[i].classList.remove('highLight')
+        }
+        li.classList.add('highLight')
     }
 
     //  会动的二级菜单
@@ -267,7 +284,6 @@
                 .start();
         }
     }
-
 </script>
 
 </body>
