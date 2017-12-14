@@ -208,7 +208,7 @@
 
 </section>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
 <script>
     //  loading 动画
     setTimeout(function () {
@@ -239,29 +239,32 @@
 
     //  点击导航栏自己滚动到对应 div
     let aTags = document.querySelectorAll('a');
-    for(let i = 0; i < aTags.length;i++){
-        aTags[i].onclick = function(x){
+    for (let i = 0; i < aTags.length; i++) {
+        aTags[i].onclick = function (x) {
             x.preventDefault();
             var currentAtag = x.currentTarget;
             var currentAtagHash = currentAtag.getAttribute('href');
             var oDiv = document.querySelector(currentAtagHash)
             var oDivTop = oDiv.offsetTop;
 
-    //  动画与缓动
-            var n = 25;
-            var number = 1000/n;
+            //  动画与缓动
+            function animate(time) {
+                requestAnimationFrame(animate);
+                TWEEN.update(time);
+            }
+
+            requestAnimationFrame(animate);
+
             var currentWindowScrollY = window.scrollY;
-            var realoDivTop = oDivTop-70
-            var apartFrom = (realoDivTop - currentWindowScrollY)/n;
-            var i = 0;
-            var idTimer = setInterval(function(){
-                if(i===25){
-                    clearInterval(idTimer)
-                    return
-                }
-                i=i+1;
-                window.scrollTo(0,currentWindowScrollY+apartFrom*i)
-            },number)
+            var realoDivTop = oDivTop - 70
+            var coords = {y: currentWindowScrollY };
+            var tween = new TWEEN.Tween(coords)
+                .to({ y: realoDivTop }, 1000)
+                .easing(TWEEN.Easing.Quadratic.Out)
+                .onUpdate(function () {
+                    window.scrollTo(0,coords.y)
+                })
+                .start();
         }
     }
 
