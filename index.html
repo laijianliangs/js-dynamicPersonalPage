@@ -246,7 +246,22 @@
             var currentAtagHash = currentAtag.getAttribute('href');
             var oDiv = document.querySelector(currentAtagHash)
             var oDivTop = oDiv.offsetTop;
-            window.scrollTo(0,oDivTop-70)
+
+    //  动画与缓动
+            var n = 25;
+            var number = 1000/n;
+            var currentWindowScrollY = window.scrollY;
+            var realoDivTop = oDivTop-70
+            var apartFrom = (realoDivTop - currentWindowScrollY)/n;
+            var i = 0;
+            var idTimer = setInterval(function(){
+                if(i===25){
+                    clearInterval(idTimer)
+                    return
+                }
+                i=i+1;
+                window.scrollTo(0,currentWindowScrollY+apartFrom*i)
+            },number)
         }
     }
 
